@@ -21,8 +21,10 @@ public class Conexion {
     
     
     public Connection connection;
-    public Conexion() {
-    this.connection = null;
+    public static Conexion singleInstance;
+    
+    private Conexion() {
+        this.connection = null;
     }
     
     public  Connection conectar (){
@@ -44,6 +46,14 @@ public class Conexion {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    /*-------------------------------------------------------------------------------*/
+    public synchronized static Conexion getInstance(){
+        if (singleInstance == null) {
+            singleInstance = new Conexion();
+        }
+        return singleInstance;
     }
 }
 
