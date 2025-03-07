@@ -4,7 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/membr/Documents/Progra_III/Proyectos/Java/GuiasJava/puntoVenta/src/database/Conexion.java</file>
-            <file>file:/C:/Users/membr/Documents/Progra_III/Proyectos/Java/GuiasJava/puntoVenta/src/database/pruebaConexion.java</file>
+            <file>file:/C:/Users/membr/Documents/Progra_III/Proyectos/Java/GuiasJava/puntoVenta/src/database/datos/CategoriaDAO.java</file>
+            <file>file:/C:/Users/membr/Documents/Progra_III/Proyectos/Java/GuiasJava/puntoVenta/src/entidades/Categoria.java</file>
+            <file>file:/C:/Users/membr/Documents/Progra_III/Proyectos/Java/GuiasJava/puntoVenta/src/datos/interfaces/CRUDGeneralInterface.java</file>
         </group>
     </open-files>
 </project-private>
