@@ -53,7 +53,7 @@ public class CategoriaControl {
         return this.tModel;
     }
     /*====================== METODO INSERTAR ===========================*/
-    public String Insertar(String nombre, String descripcion){
+    public String Insertar(String nombre, String descripcion) {
         if (DATOS.exist(nombre)) {
             return "Registro ya existe";
         } else {
@@ -68,7 +68,11 @@ public class CategoriaControl {
     }
     /*====================== METODO ACTUALIZAR ===========================*/
     public String actualizar(int id, String nombre, String nombreAnterior,String descripcion ){
-        if (nombre.equals(nombreAnterior)) {
+        if (!nombre.equals(nombreAnterior)) {
+            if (DATOS.exist(nombre)) {
+                return "El objeto ya existe";
+            }
+            
             obj.setId(id);
             obj.setNombre(nombre);
             obj.setDescripcion(descripcion);
@@ -78,17 +82,14 @@ public class CategoriaControl {
                 return "Error al actualizar";
             }
         } else {
-            if (DATOS.exist(nombre)) {
-                return "El objeto ya existe";
+            
+            obj.setId(id);
+            obj.setNombre(nombre);
+            obj.setDescripcion(descripcion);
+            if (DATOS.update(obj)) {
+                return "OK";
             } else {
-                obj.setId(id);
-                obj.setNombre(nombre);
-                obj.setDescripcion(descripcion);
-                if (DATOS.exist(nombre)) {
-                    return "El registro ya existe";
-                } else {
-                    return "Error en la actualizacion";
-                }
+                return "Error en la actualización";
             }
         }
     }
