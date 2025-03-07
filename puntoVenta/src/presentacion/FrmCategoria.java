@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
 import negocio.CategoriaControl;
 
 /**
@@ -16,11 +17,14 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
      * Creates new form FmrCategoria
      */
     private final CategoriaControl CONTROL;
+    private String accion;
     
     public FrmCategoria() {
         initComponents();
         this.CONTROL = new CategoriaControl();
-        this.listar(""); /*=====*/
+        this.listar("");
+        tabGeneral.setEnabledAt(1, false);
+        this.accion = "Guardar";
     }
     
     /*==========Metodo Listar=============*/
@@ -32,7 +36,21 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                 this.CONTROL.total()
         );
     }
-
+    
+    /*==========Metodo Limpiar=============*/
+    private void limpiar() {
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        this.accion = "Guardar";
+    }
+    
+    /*==========Metodo Para Mostrar Mensajes ERROR/OK =============*/
+    private void mensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(this,mensaje,"Sistema ", JOptionPane.ERROR);
+    }
+    private void mensajeOk(String mensaje) {
+        JOptionPane.showMessageDialog(this,mensaje,"Sistema ", JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +60,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabGeneral = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfBuscar = new javax.swing.JTextField();
@@ -52,6 +70,13 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         lblCantidadRegistro = new javax.swing.JLabel();
         btnNuevo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblCampo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -59,7 +84,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Categoria");
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        tabGeneral.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Nombre");
 
@@ -86,6 +111,11 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         lblCantidadRegistro.setText("Registros");
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,7 +137,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                             .addComponent(btnBuscar)
                             .addGap(18, 18, 18)
                             .addComponent(btnNuevo))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,30 +155,84 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Listado", jPanel1);
+        tabGeneral.addTab("Listado", jPanel1);
+
+        jLabel2.setText("Nombre(*)");
+
+        jLabel3.setText("Descripcion");
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblCampo.setText("(*) Campo obligatorio");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(79, 79, 79)
+                                .addComponent(btnCancelar))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombre)
+                                .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(lblCampo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(lblCampo)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Mantenimiento", jPanel2);
+        tabGeneral.addTab("Mantenimiento", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabGeneral)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabGeneral)
         );
 
         pack();
@@ -158,17 +242,63 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         this.listar(tfBuscar.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        tabGeneral.setEnabledAt(1, true);
+        tabGeneral.setEnabledAt(0, false);
+        tabGeneral.setSelectedIndex(1);
+        btnGuardar.setText("Guardar");
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if(txtNombre.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Nombre es obligatorio",
+                    "System", JOptionPane.WARNING_MESSAGE);
+            txtNombre.requestFocus();
+            return;
+        }
+        String respuesta;
+        
+        if (this.accion.equals("editar")) {
+            
+        }else {
+            respuesta = this.CONTROL.Insertar(txtNombre.getText(), txtDescripcion.getText());
+            if (respuesta.equals("OK")) {
+                this.mensajeOk("Registrado Correctamente");
+                this.limpiar();
+                this.listar("");
+            } else {
+                this.mensajeError(respuesta);
+            }
+        }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        tabGeneral.setEnabledAt(0, true);
+        tabGeneral.setEnabledAt(1, false);
+        tabGeneral.setSelectedIndex(0);
+        this.limpiar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblCampo;
     private javax.swing.JLabel lblCantidadRegistro;
+    private javax.swing.JTabbedPane tabGeneral;
     private javax.swing.JTable tablaListado;
     private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
