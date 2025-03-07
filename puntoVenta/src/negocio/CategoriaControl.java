@@ -66,7 +66,7 @@ public class CategoriaControl {
             }
         }
     }
-    /*======================  ===========================*/
+    /*====================== METODO ACTUALIZAR ===========================*/
     public String actualizar(int id, String nombre, String nombreAnterior,String descripcion ){
         if (nombre.equals(nombreAnterior)) {
             obj.setId(id);
@@ -92,7 +92,7 @@ public class CategoriaControl {
             }
         }
     }
-    /*======================  ===========================*/
+    /*====================== METODO DESACTIVAR ===========================*/
     public String desactivar (int id){
         if (DATOS.offVariable(id)) {
             return "OK";
@@ -100,7 +100,7 @@ public class CategoriaControl {
             return "No se puede desactivar el registro";
         }
     }
-    /*======================  ===========================*/
+    /*====================== METODO ACTIVAR ===========================*/
     public String activar (int id){
         if (DATOS.onVariable(id)){
             return "OK";
@@ -108,7 +108,7 @@ public class CategoriaControl {
             return "No se puede activar el registro";
         }
     }
-    /*======================  ===========================*/
+    /*====================== Obtener Total ===========================*/
     public int total(){
          return  DATOS.total();
     }
